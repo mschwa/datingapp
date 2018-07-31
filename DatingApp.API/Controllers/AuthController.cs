@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -46,8 +47,11 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody]UserForLoginDto userModel)
         {
+            throw new Exception("Uh oh!!!");
+            
             var user = await _repo.Login(userModel.Username, userModel.Password);
 
             if (user == null)
