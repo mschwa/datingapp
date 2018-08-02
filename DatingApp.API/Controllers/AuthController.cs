@@ -25,7 +25,7 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]UserForLoginDto userModel)
+        public async Task<IActionResult> Register([FromBody]UserForRegisterDto userModel)
         {
             if (ModelState.IsValid)
             {
@@ -50,8 +50,6 @@ namespace DatingApp.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody]UserForLoginDto userModel)
         {
-            throw new Exception("Uh oh!!!");
-            
             var user = await _repo.Login(userModel.Username, userModel.Password);
 
             if (user == null)
