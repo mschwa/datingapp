@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
+using DatingApp.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +38,7 @@ namespace DatingApp.API.Controllers
                     return BadRequest("User already exists!");
                 }
 
-                var user = await _repo.Register(new API.User { Username = userModel.Username }, userModel.Password);
+                var user = await _repo.Register(new User { Username = userModel.Username }, userModel.Password);
 
                 return StatusCode(201);
             }
