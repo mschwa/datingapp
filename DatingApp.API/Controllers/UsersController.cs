@@ -36,7 +36,7 @@ namespace DatingApp.API.Controllers
         {
             var user = await _repo.GetUser(id);
 
-            var results = _mapper.Map<UserForListDto>(user);
+            var results = _mapper.Map<UserForDetailsDto>(user);
 
             return Ok(results);
         }
