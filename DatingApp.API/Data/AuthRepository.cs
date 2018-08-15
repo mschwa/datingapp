@@ -43,6 +43,7 @@ namespace DatingApp.API.Data
         {
             var user = await _dataContext
                 .Users
+                .Include(p => p.Photos)
                 .FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
 
             if(user != null && VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt)) 
