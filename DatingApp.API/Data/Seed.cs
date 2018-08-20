@@ -17,6 +17,8 @@ namespace DatingApp.API.Data
         {
             var data = System.IO.File.ReadAllText("Data/UserSeedData.json");
             var users = JsonConvert.DeserializeObject<List<User>>(data);
+            int id = 1;
+            int photoId = 1;
 
             foreach (var user in users)
             {
@@ -27,6 +29,15 @@ namespace DatingApp.API.Data
                 user.PasswordHash = hash;
                 user.PasswordSalt = salt;
                 user.Username = user.Username.ToLower();
+
+                //user.Id = id;
+                id++;
+
+                foreach (var photo in user.Photos)
+                {
+                    //photo.Id = photoId;
+                    photoId++;
+                }
 
                 _context.Users.Add(user);                
             }
